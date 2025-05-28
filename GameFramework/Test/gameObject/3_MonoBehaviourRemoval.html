@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoBehaviour removal</title>
+    <script type = "module">
+        import * as GameFramework from "../../core/GameFramework.js";
+
+        class TestMonoBehaviour extends GameFramework.MonoBehaviour
+        {
+            constructor()
+            {
+                super();
+                this.count = 0;
+            }
+            update()
+            {
+                console.log(`update in monoBehaviour : ${this.count++}`);
+            }
+        }
+
+
+
+        let testMonoBehaviour = new TestMonoBehaviour();
+        let gameObject = new GameFramework.GameObject();
+        gameObject.addEventListener(testMonoBehaviour);
+
+        document.querySelector("button").addEventListener("click", () =>
+        {
+            gameObject.removeMonoBehaviour(testMonoBehaviour);
+        });
+    </script>
+</head>
+<body>
+    <button>destroy TestMonoBehaviour</button>
+</body>
+</html>

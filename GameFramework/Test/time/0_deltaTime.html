@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta time</title>
+    <script type = "module">
+        import * as GameFramework from "../../core/GameFramework.js";
+
+
+
+        class TestMonoBehaviour extends GameFramework.MonoBehaviour
+        {
+            constructor()
+            {
+                super();
+            }
+            update()
+            {
+                console.log(`The interval between previous frame and this frame is ${GameFramework.Time.deltaTime} second.`);
+            }
+        }
+
+
+
+        let gameObject = new GameFramework.GameObject(new TestMonoBehaviour());
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

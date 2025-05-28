@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game object destruction</title>
+    <script type = "module">
+        import * as GameFramework from "../../core/GameFramework.js";
+
+
+
+        // It can check whether game object created in here : memory heap > constructor > Map.
+        let gameObject = new GameFramework.GameObject();
+        console.log("A gameObject is created.");
+
+        document.querySelector("button").addEventListener("click", () => 
+        {
+            // For free gameObject instance in memory, call gameObject.destroy() and don't let any variables reference to the gameObject instance.;
+            // Like this.
+            gameObject.destroy();
+            gameObject = null;
+            console.log("destroy");
+        });
+    </script>
+</head>
+<body>
+    <button>destroy</button>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform</title>
+    <script type = "module">
+        import * as GameFramework from "../../core/GameFramework.js";
+
+
+
+        let gameObject = new GameFramework.GameObject();
+
+        gameObject.image.src = "./dummy.png";
+        gameObject.transform.parent = document.getElementById("gameObjectParent");
+
+        //#region event addition
+        document.querySelector("button:nth-of-type(1)").addEventListener("click", function()
+        {
+            gameObject.transform.position.x += 10;
+        });
+        document.querySelector("button:nth-of-type(2)").addEventListener("click", function()
+        {
+            gameObject.transform.position.y += 10;
+        });
+        document.querySelector("button:nth-of-type(3)").addEventListener("click", function()
+        {
+            gameObject.transform.position.x -= 10;
+        });
+        document.querySelector("button:nth-of-type(4)").addEventListener("click", function()
+        {
+            gameObject.transform.position.y -= 10;
+        });
+        document.querySelector("button:nth-of-type(5)").addEventListener("click", function()
+        {
+            gameObject.transform.degree += 10;
+        });
+        document.querySelector("button:nth-of-type(6)").addEventListener("click", function()
+        {
+            gameObject.transform.degree -= 10;
+        });
+        document.querySelector("button:nth-of-type(7)").addEventListener("click", function()
+        {
+            gameObject.transform.scale.x += 1;
+        });
+        document.querySelector("button:nth-of-type(8)").addEventListener("click", function()
+        {
+            gameObject.transform.scale.y += 1;
+        });
+        document.querySelector("button:nth-of-type(9)").addEventListener("click", function()
+        {
+            gameObject.transform.scale.x -= 1;
+        });
+        document.querySelector("button:nth-of-type(10)").addEventListener("click", function()
+        {
+            gameObject.transform.scale.y -= 1;
+        });
+        //#endregion
+    </script>
+</head>
+<body>
+    <h1>position</h1>
+    <button>move 10px to x axis</button>
+    <button>move 10px to y axis</button>
+    <button>move 10 px to -x axis</button>
+    <button>move 10 px to -y axis</button>
+
+    <h1>rotation</h1>
+    <button>rotate 10 deg</button>
+    <button>rotate -10 deg</button>
+
+    <h1>scale</h1>
+    <button>size up by 1 to x axis side</button>
+    <button>size up by 1 to y axis side</button>
+    <button>size down by 1 to x axis side</button>
+    <button>size down by 1 to y axis side</button>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id = "gameObjectParent"></div>
+</body>
+</html>
