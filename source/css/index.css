@@ -1,8 +1,9 @@
 body
 {
     margin: 0px;
+    overflow: hidden;
 }
 #wrapper
 {
-    text-align: center;
+    position: relative;
 }

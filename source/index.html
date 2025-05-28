@@ -17,18 +17,55 @@
 
         function initializeBackground()
         {
-            const background = new GameFramework.GameObject();
+            const background = new GameFramework.GameObject("../../resource/Background.png");
             const backgroundWidthRatio = 9.0 / 16.0;
 
-            background.image.src = "../../resource/Background.png";
             background.transform.parent = document.getElementById("wrapper");
             background.image.height = window.innerHeight;
             background.image.width = backgroundWidthRatio * background.image.height;
+            background.image.style.position = "absolute";
+            background.transform.position.x = (window.innerWidth - background.image.width) / 2.0;
         }
         function initializeTitle()
         {
             const cards = new Array();
 
+            for (let i = 0; i < 15; i++)
+            {
+                const titleCard = new GameFramework.GameObject(`../resource/title_card/${i}.png`);
+
+                cards.push(titleCard);
+                titleCard.transform.parent = document.getElementById("wrapper");
+                titleCard.image.width = 270;
+                titleCard.image.height = 140;
+                titleCard.image.style.position = "absolute";
+            }
+
+            cards[0].transform.position = 
+            {
+                x: 200,
+                y: 100
+            };
+            cards[1].transform.position = 
+            {
+                x: 270,
+                y: 100
+            };
+            cards[2].transform.position = 
+            {
+                x: 340,
+                y: 100
+            };
+            cards[3].transform.position = 
+            {
+                x: 410,
+                y: 100
+            };
+            cards[4].transform.position = 
+            {
+                x: 480,
+                y: 100
+            };
         }
     </script>
 </head>
