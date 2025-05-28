@@ -13,13 +13,14 @@ export default class GameObject
 
 
 
-    constructor()
+    constructor(imageSource = null)
     {
         this.#monoBehaviours = new Array();
         this.#iD = GameObject.#gameObjectIDIssuer.issue();
         this.image = new Image();
         this.transform = new Transform(this.image);
 
+        this.image.src = imageSource;
         this.transform.parent = document.body;
         this.addMonoBehaviour(this.transform);
 
