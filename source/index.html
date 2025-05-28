@@ -11,6 +11,7 @@
 
 
         initializeBackground();
+        initializeTitle();
 
 
 
@@ -22,7 +23,12 @@
             background.image.src = "../../resource/Background.png";
             background.transform.parent = document.getElementById("wrapper");
             background.image.height = window.innerHeight;
-            background.image.width = backgroundWidthRatio * background.height;
+            background.image.width = backgroundWidthRatio * background.image.height;
+        }
+        function initializeTitle()
+        {
+            const cards = new Array();
+
         }
     </script>
 </head>
