@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script type="module">
+        import * as GameFramework from "../gameFramework/GameFramework.js";
+
+
+
+        initializeBackground();
+
+
+
+        function initializeBackground()
+        {
+            const background = new GameFramework.GameObject();
+            const backgroundWidthRatio = 9.0 / 16.0;
+
+            background.image.src = "../../resource/Background.png";
+            background.transform.parent = document.getElementById("wrapper");
+            background.image.height = window.innerHeight;
+            background.image.width = backgroundWidthRatio * background.height;
+        }
+    </script>
 </head>
-<script type="module">
-    import * as GameFramework from "../GameFramework/"
-</script>
 <body>
     <div id = "wrapper">
-        <div id = "background">
     </div>
 </body>
 </html>
