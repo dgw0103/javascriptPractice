@@ -1,3 +1,5 @@
+import MonoBehaviour from "../MonoBehaviour.js";
+
 export default class Transform extends MonoBehaviour
 {
     #element;
@@ -7,6 +9,7 @@ export default class Transform extends MonoBehaviour
 
     constructor(element)
     {
+        super();
         this.#element = element;
         /** The unit is 'px'. */
         this.position =
@@ -14,31 +17,23 @@ export default class Transform extends MonoBehaviour
             x: 0,
             y: 0
         };
-        this.degree = 0;
+        this.rotation = 0;
         this.scale =
         {
             x: 1,
             y: 1
         };
-
-        //this.#element.style.display = "inline-block";
-        this.#element.style.display = "table";
-        this.#element.style.overflow = "auto";
     }
 
 
 
     update()
     {
-        this.#element.style.transform = `matrix(${this.scale.x}, 0, 0, ${this.scale.y}, ${this.position.x}, ${this.position.y}) rotate(${this.degree}deg)`;
+        this.#element.style.transform = `matrix(${this.scale.x}, 0, 0, ${this.scale.y}, ${this.position.x}, ${this.position.y}) rotate(${this.rotation}deg)`;
     }
     set parent(value)
     {
         this.#parent = value;
         this.#parent.appendChild(this.#element);
-    }
-    setChild(element)
-    {
-        this.#element.appendChild(element);
     }
 }

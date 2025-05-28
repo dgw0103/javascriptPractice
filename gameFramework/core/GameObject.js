@@ -7,7 +7,7 @@ export default class GameObject
 {
     #monoBehaviours;
     #iD;
-    #element;
+    image;
     transform;
     static #gameObjectIDIssuer = new GameObjectIDIssuer();
 
@@ -17,9 +17,10 @@ export default class GameObject
     {
         this.#monoBehaviours = new Array();
         this.#iD = GameObject.#gameObjectIDIssuer.issue();
-        this.#element = new Image();
-        this.transform = new Transform(this.#element);
+        this.image = new Image();
+        this.transform = new Transform(this.image);
 
+        this.transform.parent = document.body;
         this.addMonoBehaviour(this.transform);
 
         registerGameObject(this.#iD, this);

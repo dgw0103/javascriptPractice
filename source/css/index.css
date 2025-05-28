@@ -1,0 +1,10 @@
+#wrapper
+{
+    align-items: center;
+}
+#background
+{
+    width: 100px;
+    height: 100%;
+    background-image: url("../../resource/Background.png");
+}

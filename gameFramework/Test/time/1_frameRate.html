@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delta time</title>
+    <title>Frame rate</title>
     <script type = "module">
-        import * as GameFramework from "../../core/GameFramework.js";
+        import * as GameFramework from "../../GameFramework.js";
 
 
 
@@ -24,9 +24,16 @@
 
 
         let gameObject = new GameFramework.GameObject(new TestMonoBehaviour());
+
+        // click buttons to check the frameRate changes in console window of chrome broswer.
+        document.querySelector("button:nth-child(1)").addEventListener("click", () => GameFramework.Time.frameRate = 15);
+        document.querySelector("button:nth-child(2)").addEventListener("click", () => GameFramework.Time.frameRate = 30);
+        document.querySelector("button:nth-child(3)").addEventListener("click", () => GameFramework.Time.frameRate = 60);
     </script>
 </head>
 <body>
-    
+    <button>15</button>
+    <button>30</button>
+    <button>60</button>
 </body>
 </html>

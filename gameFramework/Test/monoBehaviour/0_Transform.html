@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transform</title>
     <script type = "module">
-        import * as GameFramework from "../../core/GameFramework.js";
+        import * as GameFramework from "../../GameFramework.js";
 
 
 
         let gameObject = new GameFramework.GameObject();
 
         gameObject.image.src = "./dummy.png";
-        gameObject.transform.parent = document.getElementById("gameObjectParent");
-
         //#region event addition
         document.querySelector("button:nth-of-type(1)").addEventListener("click", function()
         {
@@ -33,12 +31,12 @@
         });
         document.querySelector("button:nth-of-type(5)").addEventListener("click", function()
         {
-            gameObject.transform.degree += 10;
-        });
+            gameObject.transform.rotation += 10;
+        })
         document.querySelector("button:nth-of-type(6)").addEventListener("click", function()
         {
-            gameObject.transform.degree -= 10;
-        });
+            gameObject.transform.rotation -= 10;
+        })
         document.querySelector("button:nth-of-type(7)").addEventListener("click", function()
         {
             gameObject.transform.scale.x += 1;
@@ -66,21 +64,18 @@
     <button>move 10 px to -y axis</button>
 
     <h1>rotation</h1>
-    <button>rotate 10 deg</button>
-    <button>rotate -10 deg</button>
+    <button>rotate 10 degree</button>
+    <button>rotate -10 degree</button>
 
     <h1>scale</h1>
     <button>size up by 1 to x axis side</button>
     <button>size up by 1 to y axis side</button>
     <button>size down by 1 to x axis side</button>
     <button>size down by 1 to y axis side</button>
-
     <br>
     <br>
     <br>
     <br>
     <br>
-    <br>
-    <div id = "gameObjectParent"></div>
 </body>
 </html>

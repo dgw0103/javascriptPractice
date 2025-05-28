@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoBehaviour addition</title>
+    <script type = "module">
+        import * as GameFramework from "../../GameFramework.js";
+
+        class TestMonoBehaviour extends GameFramework.MonoBehaviour
+        {
+            constructor()
+            {
+                super();
+                this.count = 0;
+            }
+            update()
+            {
+                console.log(`update in monoBehaviour : ${this.count++}`);
+            }
+        }
+
+
+
+        // This way is possible too. (add by constructor's argument)
+        // let gameObject = new GameFramework.GameObject(new TestMonoBehaviour());
+
+        
+
+        let gameObject = new GameFramework.GameObject();
+        document.querySelector("button").addEventListener("click", () => 
+        {
+            let testMonoBehaviour = new TestMonoBehaviour();
+            gameObject.addMonoBehaviour(testMonoBehaviour);
+        });
+    </script>
+</head>
+<body>
+    <button>add TestMonoBehaviour to gameObject</button>
+</body>
+</html>
