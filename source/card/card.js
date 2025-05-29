@@ -1,5 +1,5 @@
 import * as GameFramework from "../../gameFramework/GameFramework.js";
-import CardAnimation from "./cardAnimation.js";
+import CardSelectionAnimation from "./cardSelectionAnimation.js";
 
 export default class Card extends GameFramework.MonoBehaviour
 {
@@ -18,7 +18,7 @@ export default class Card extends GameFramework.MonoBehaviour
     onAdded()
     {
         this.#isClicked = false;
-        this.cardAnimation = new CardAnimation(this);
+        this.cardAnimation = new CardSelectionAnimation(this);
 
         this.gameObject.image.width = 130;
         this.gameObject.image.height = 130;
@@ -31,6 +31,7 @@ export default class Card extends GameFramework.MonoBehaviour
             if (this.#isClicked === false)
             {
                 this.#isClicked = true;
+                this.gameObject.addMonoBehaviour(new CardSelectionAnimation());
                 this.onClick(this.#index);
             }
         });
