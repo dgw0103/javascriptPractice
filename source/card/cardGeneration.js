@@ -1,3 +1,4 @@
+import * as GameFramework from "../../gameFramework/GameFramework.js";
 import Card from "./card.js";
 
 export default class CardGeneration
@@ -21,7 +22,7 @@ export default class CardGeneration
 
 
 
-    #generate()
+    #generate(parent)
     {
         const cards = new Array();
 
@@ -30,20 +31,20 @@ export default class CardGeneration
             for (let j = 0; j < CardGeneration.#horizontal; j++)
             {
                 const gameObject = new GameFramework.GameObject();
-                const card = new Card
-                (
-                    this.#randomNext(0, Card.cardSignals.length),
-                    this.#randomNext(1, Card.cardMaxNumber + 1),
-                    CardGeneration.#firstPosition.x + (CardGeneration.#horizontalInterval * j),
-                    CardGeneration.#firstPosition.y + (CardGeneration.#verticalInterval * i)
-                );
-                
+                const card = new Card();
+
                 gameObject.transform.parent = parent;
                 gameObject.addMonoBehaviour(card);
-                
+
+                card.setSource(this.#randomNext(0, Card.cardSignals.length), this.#randomNext(1, Card.cardMaxNumber + 1));
+                gameObject.transform.position.x = CardGeneration.#firstPosition.x + (CardGeneration.#horizontalInterval * j);
+                gameObject.transform.position.y = CardGeneration.#firstPosition.y + (CardGeneration.#verticalInterval * i);
+
                 cards.push(card);
             }
         }
+
+        return cards;
     }
     #randomNext(min, max)
     {
