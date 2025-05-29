@@ -18,6 +18,7 @@ export default class CardGeneration
     static generate(parent)
     {
         const cards = new Array();
+        const randomNumberGenerator = this.createRandomUniqueGenerator(0, (Card.cardMaxNumber * Card.cardSignals.length) - 1);
 
         for (let i = 0; i < CardGeneration.#vertical; i++)
         {
@@ -26,23 +27,48 @@ export default class CardGeneration
                 const gameObject = new GameFramework.GameObject();
                 const card = new Card();
 
-                gameObject.transform.parent = parent;
                 gameObject.addMonoBehaviour(card);
-
-                card.setSource(CardGeneration.#randomNext(0, Card.cardSignals.length), CardGeneration.#randomNext(1, Card.cardMaxNumber + 1));
+                gameObject.transform.parent = parent;
                 gameObject.transform.position.x = CardGeneration.#firstPosition.x + (CardGeneration.#horizontalInterval * j);
                 gameObject.transform.position.y = CardGeneration.#firstPosition.y + (CardGeneration.#verticalInterval * i);
+
+                CardGeneration.setCardSource(card, randomNumberGenerator());
 
                 cards.push(card);
             }
         }
 
+        cards.sort(Card.compare);
+
+        for (let i = 0; i < cards.length; i++)
+        {
+            cards[i].Index = i;
+        }
+
         return cards;
     }
-    static #randomNext(min, max)
+    static createRandomUniqueGenerator(min, max)
     {
-        let random = Math.random();
+        const pool = Array.from({ length: max - min + 1 }, (_, i) => i + min);
 
-        return (Math.floor(random * (max - min)) + min);
+        return function getRandomUnique()
+        {
+            if (pool.length === 0)
+            {
+                throw new Error(`범위 ${min}~${max} 내에 더 이상 반환할 수 있는 수가 없습니다.`);
+            }
+
+            const index = Math.floor(Math.random() * pool.length);
+
+            return pool.splice(index, 1)[0];
+        };
+    }
+    static setCardSource(card, randomUniqueNumber)
+    {
+        const signal = randomUniqueNumber % Card.cardSignals.length;
+        const number = parseInt(randomUniqueNumber / Card.cardSignals.length);
+
+        card.Number = randomUniqueNumber;
+        card.setSource(signal, number);
     }
 }
