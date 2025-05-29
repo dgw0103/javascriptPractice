@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="./css/index.css">
     <script type="module">
         import * as GameFramework from "../gameFramework/GameFramework.js";
-        import CardGeneration from "./cardGeneration.js";
+        import CardGeneration from "./card/cardGeneration.js";
 
 
 
         initializeBackground();
-        new CardGeneration(document.getElementById("wrapper"));
+        let cards = CardGeneration.generate(document.getElementById("card"));
 
 
 
