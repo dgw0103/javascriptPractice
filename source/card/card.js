@@ -1,4 +1,5 @@
 import * as GameFramework from "../../gameFramework/GameFramework.js";
+import CardAnimation from "./cardAnimation.js";
 
 export default class Card extends GameFramework.MonoBehaviour
 {
@@ -6,6 +7,7 @@ export default class Card extends GameFramework.MonoBehaviour
     #number;
     #index;
     #isClicked;
+    cardAnimation;
     static cardSignals = new Array("Club", "Heart", "Diamond", "Spade");
     static #cardFilePath = "../../resource/card/";
     static cardMaxNumber = 13;
@@ -16,6 +18,7 @@ export default class Card extends GameFramework.MonoBehaviour
     onAdded()
     {
         this.#isClicked = false;
+        this.cardAnimation = new CardAnimation(this);
 
         this.gameObject.image.width = 130;
         this.gameObject.image.height = 130;
