@@ -12,3 +12,19 @@ body
     position: relative;
     display: inline;
 }
+#block
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 0px;
+    visibility: hidden;
+}
+#block #textBackground
+{
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
