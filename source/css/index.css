@@ -5,5 +5,10 @@ body
 }
 #wrapper
 {
+    text-align: center;
+}
+#card
+{
     position: relative;
+    display: inline;
 }
