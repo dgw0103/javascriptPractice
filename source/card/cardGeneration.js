@@ -15,14 +15,7 @@ export default class CardGeneration
 
 
 
-    constructor(parent)
-    {
-        this.#generate(parent);
-    }
-
-
-
-    #generate(parent)
+    static generate(parent)
     {
         const cards = new Array();
 
@@ -36,7 +29,7 @@ export default class CardGeneration
                 gameObject.transform.parent = parent;
                 gameObject.addMonoBehaviour(card);
 
-                card.setSource(this.#randomNext(0, Card.cardSignals.length), this.#randomNext(1, Card.cardMaxNumber + 1));
+                card.setSource(CardGeneration.#randomNext(0, Card.cardSignals.length), CardGeneration.#randomNext(1, Card.cardMaxNumber + 1));
                 gameObject.transform.position.x = CardGeneration.#firstPosition.x + (CardGeneration.#horizontalInterval * j);
                 gameObject.transform.position.y = CardGeneration.#firstPosition.y + (CardGeneration.#verticalInterval * i);
 
@@ -46,7 +39,7 @@ export default class CardGeneration
 
         return cards;
     }
-    #randomNext(min, max)
+    static #randomNext(min, max)
     {
         let random = Math.random();
 
