@@ -39,6 +39,7 @@ export default class GameObject
     {
         monoBeheviour.gameObject = this;
         this.#monoBehaviours.splice(this.#monoBehaviours.length, 0, monoBeheviour);
+        monoBeheviour.onAdded();
     }
     removeMonoBehaviour(monoBeheviour)
     {
