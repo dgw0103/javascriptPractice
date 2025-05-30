@@ -88,6 +88,7 @@ export default class Card extends GameFramework.MonoBehaviour
     #onGameOver()
     {
         document.getElementById("block").style.visibility = "visible";
+        document.getElementById("orderPanel").style.visibility = "hidden";
         this.getCorrectCardInCurrent().gameObject.addMonoBehaviour(new CardWrongAnimation());
     }
 }
