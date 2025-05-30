@@ -11,13 +11,15 @@
 
 
 
-        let currentSelectedCardIndex = -1;
+        let currentSelectedCardIndex = 0;
 
         initializeBackground();
         let cards = CardGeneration.generate(document.getElementById("card"));
         cards.forEach(element =>
         {
-            element.onClick = onClick;
+            element.getCurrentSelectedCardIndex = () => currentSelectedCardIndex;
+            element.increaseIndex = () => currentSelectedCardIndex++;
+            element.getCorrectCardInCurrent = () => cards[currentSelectedCardIndex];
         });
 
         
@@ -30,28 +32,21 @@
             background.style.height = `${window.innerHeight}px`;
             background.style.width = `${backgroundWidthRatio * parseInt(background.style.height)}px`;
         }
-        function onClick(index)
-        {
-            const answer = currentSelectedCardIndex + 1 === index;
-
-            if (answer === false)
-            {
-                onGameOver();
-                return;
-            }
-
-            currentSelectedCardIndex++;    
-            console.log("right");
-        }
-        function onGameOver()
-        {
-            document.getElementById("block").style.visibility = "visible";
-        }
     </script>
 </head>
 <body>
     <div id = "wrapper">
         <img src="../../resource/Background.png" id = "background">
+        <div id="orderPanel">
+            <h2>CLICK IN ORDER BY SMALL SIZE</h2>
+            <span>CLOVER</span>
+            <span>&nbsp&nbsp&nbsp<&nbsp&nbsp&nbsp</span>
+            <span>HEART</span>
+            <span>&nbsp&nbsp&nbsp<&nbsp&nbsp&nbsp</span>
+            <span>DIAMOND</span>
+            <span>&nbsp&nbsp&nbsp<&nbsp&nbsp&nbsp</span>
+            <span>SPACE</span>
+        </div>
         <div id="card"></div>
         <div id="block">
             <div id="textBackground">

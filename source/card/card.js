@@ -1,9 +1,12 @@
 import * as GameFramework from "../../gameFramework/GameFramework.js";
 import CardSelectionAnimation from "./cardSelectionAnimation.js";
+import CardWrongAnimation from "./cardWrongAnimation.js";
 
 export default class Card extends GameFramework.MonoBehaviour
 {
-    onClick;
+    getCurrentSelectedCardIndex;
+    increaseIndex;
+    getCorrectCardInCurrent;
     #number;
     #index;
     #isClicked;
@@ -31,8 +34,7 @@ export default class Card extends GameFramework.MonoBehaviour
             if (this.#isClicked === false)
             {
                 this.#isClicked = true;
-                this.gameObject.addMonoBehaviour(new CardSelectionAnimation());
-                this.onClick(this.#index);
+                this.onClick();
             }
         });
 
@@ -68,5 +70,25 @@ export default class Card extends GameFramework.MonoBehaviour
     setSource(signalIndex, cardNumber)
     {
         this.gameObject.image.src = `${Card.#cardFilePath}${Card.cardSignals[signalIndex]}${String(cardNumber + 1).padStart(2, '0')}.${Card.#cardImageExtension}`;
+    }
+    onClick()
+    {
+        const currentSelectedCardIndex = this.getCurrentSelectedCardIndex();
+        const answer = currentSelectedCardIndex === this.#index;
+
+        if (answer === false)
+        {
+            this.#onGameOver();
+            return;
+        }
+
+        this.increaseIndex();
+        this.gameObject.addMonoBehaviour(new CardSelectionAnimation());
+    }
+    #onGameOver()
+    {
+        document.getElementById("block").style.visibility = "visible";
+        document.getElementById("orderPanel").style.visibility = "hidden";
+        this.getCorrectCardInCurrent().gameObject.addMonoBehaviour(new CardWrongAnimation());
     }
 }
